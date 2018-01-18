@@ -1,21 +1,26 @@
-console.log('working');
-
-//append new item to list of items
+//append new item to list of items -done
 //check and uncheck by applying new class ".shopping-item__checked"
 //remove items from list using .remove()
 // helpful notes: submit() preventDefault() toggleClass() closest()
 // use THIS and event delegation
 
-
+//add item
 $('#js-shopping-list-form button').on('click', (event) => {
   event.preventDefault();
-
-  let item = $('.js-shopping-list-entry').val();
+  const item = $('.js-shopping-list-entry').val();
   addItem(item);
-  console.log(item + 'at end of list');
-
-  
 })
+
+//check item
+$('.shopping-list').on("click", '.shopping-item-toggle', function (event) {
+		$(this).closest('li').find('.shopping-item').toggleClass('shopping-item__checked');
+  });
+
+//remove item
+$('.shopping-list').on("click", '.shopping-item-delete', function (event) {
+	$(this).closest('li').remove();
+});
+  
 
 function addItem (item) {
   $('.shopping-list').append(
@@ -31,7 +36,5 @@ function addItem (item) {
       </button>
     </div>
   </li>
-  `
-  )
-  console.log('append to end of list' + item);
+  ` )
 }
